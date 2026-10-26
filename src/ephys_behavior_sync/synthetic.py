@@ -4,6 +4,7 @@ Two generators, kept separate because raw signals are large and spike trains are
 
 * :func:`make_raw_snippet`: a few seconds of multichannel raw signal with spikes, independent
   noise and noise shared by all channels. Used to test preprocessing.
+* :func:`make_digital_words`: a digital-input stream with trigger pulses at known times.
 * :func:`make_session`: spike trains of several units over a full session, plus the behavior
   events table, with some units responding to some events. Used to test responsivity and PSTHs.
 
@@ -89,6 +90,38 @@ def make_raw_snippet(
         "spike_channels": np.concatenate(channels)[order],
         "spike_amplitudes": np.concatenate(amps)[order],
     }
+
+
+# ----------------------------------------------------------------------------------------
+# Digital input (trigger pulses)
+# ----------------------------------------------------------------------------------------
+
+def make_digital_words(
+    pulse_times_s,
+    duration_s: float,
+    fs: float = 32000.0,
+    bit: int = 3,
+    pulse_width_s: float = 0.01,
+    start_high: bool = False,
+) -> np.ndarray:
+    """A digital-input stream (uint16 words, one per sample) with pulses on one bit.
+
+    The target ``bit`` is high for ``pulse_width_s`` after each time in ``pulse_times_s``.
+    A neighbouring bit toggles at 5 Hz the whole time, as a distractor: code that reads the
+    word as a whole, instead of one bit, will find the wrong edges. With ``start_high`` the
+    target bit is already high at sample 0 (no rising edge there).
+    """
+    n = int(round(duration_s * fs))
+    words = np.zeros(n, dtype=np.uint16)
+    for t in np.atleast_1d(pulse_times_s):
+        i0, i1 = int(round(t * fs)), int(round((t + pulse_width_s) * fs))
+        words[i0:i1] |= np.uint16(1 << bit)
+    if start_high:
+        words[:int(round(pulse_width_s * fs))] |= np.uint16(1 << bit)
+    distractor = (bit + 1) % 16
+    toggle = (np.arange(n) // int(fs / 10)) % 2
+    words |= (toggle.astype(np.uint16) << np.uint16(distractor))
+    return words
 
 
 # ----------------------------------------------------------------------------------------
