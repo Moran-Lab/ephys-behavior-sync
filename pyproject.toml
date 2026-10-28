@@ -19,8 +19,6 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "pytest",
-    "nbstripout",
-    "jupyter",
 ]
 
 [tool.setuptools.packages.find]

@@ -83,7 +83,7 @@ def test_correction_options():
         unit_responsivity(spikes, onsets, correction="bonferroni")
 
 
-def test_recovers_injected_responses_from_a_synthetic_session():
+def test_recovers_simulated_responses_from_a_synthetic_session():
     s = make_session(seed=0)
     video_onsets = onsets_by_subject_behavior(s["events"], exclude_behaviors=IGNORED_BEHAVIORS)
     onsets = {k: annotation_to_neural_time(v, s["first_frame_neural_s"]) for k, v in video_onsets.items()}
@@ -95,7 +95,7 @@ def test_recovers_injected_responses_from_a_synthetic_session():
     targets = res[is_target]
     others = res[~is_target]
 
-    # every injected response is found, with the right direction
+    # every simulated response is found, with the right direction
     assert len(targets) == 6
     assert targets.responsive.all()
     assert (targets.direction == targets.role.map({"up": "up", "down": "down"})).all()
