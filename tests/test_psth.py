@@ -51,7 +51,7 @@ def test_invalid_inputs_raise():
         compute_psth(np.array([1.0]), ONSETS, pre_s=1.0, post_s=2.0, bin_s=0.07)
 
 
-def test_injected_responses_show_in_the_psth():
+def test_simulated_responses_show_in_the_psth():
     s = make_session(seed=0)
     video = onsets_by_subject_behavior(s["events"], exclude_behaviors=IGNORED_BEHAVIORS)
     units = s["truth"]["units"]

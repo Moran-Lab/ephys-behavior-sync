@@ -144,7 +144,7 @@ def make_session(
     gain_down: float = 0.2,
     response_window_s: float = 2.0,
 ) -> dict:
-    """Spike trains and behavior events for one session, with injected responses.
+    """Spike trains and behavior events for one session, with simulated responses.
 
     Units
       * ``slow`` units fire at 0.3 Hz and never respond.

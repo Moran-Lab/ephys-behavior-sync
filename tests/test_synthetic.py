@@ -50,7 +50,7 @@ def test_baseline_rates_match_truth():
             assert abs(len(spikes) - expected) < 5 * np.sqrt(expected)   # Poisson, 5 SD
 
 
-def test_injected_responses_have_the_right_direction():
+def test_simulated_responses_have_the_right_direction():
     s = make_session(seed=0)
     units = s["truth"]["units"]
     for _, row in units[units.role.isin(["up", "down"])].iterrows():
