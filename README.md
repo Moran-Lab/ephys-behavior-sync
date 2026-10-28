@@ -24,15 +24,15 @@ responsivity, Holm-corrected: 6 of 6 simulated responses found; 0 false positive
 
 **1. Preprocessing.** One channel before and after cleaning. Shared noise and slow oscillations are removed, and the putative spikes stay.
 
-![Raw and cleaned signal](docs/figures/preprocessing.png)
+<img src="docs/figures/preprocessing.png" width="300" alt="Raw and cleaned signal">
 
 **2. Responsivity.** Each point is one unit and one (subject, behavior) combination. Its position is the unit's mean firing rate before onset (x) and after onset (y), averaged over events. Points on the dashed line did not change. Red points are the six combinations with a simulated response, three increases above the line and three decreases below it. Grey points are the 154 combinations without one.
 
-![Rate before vs. after onset](docs/figures/responsivity.png)
+<img src="docs/figures/responsivity.png" width="250" alt="Rate before vs. after onset">
 
 **3. Raster and PSTH.** One unit with a simulated increase after one behavior. Top: each row is one event and each tick is one spike, aligned to onset. Bottom: the average change in firing rate, one curve per behavior. Only allo-groom (blue) evokes a response.
 
-![Raster and PSTH](docs/figures/psth.png)
+<img src="docs/figures/psth.png" width="300" alt="Raster and PSTH">
 
 ## Quickstart
 
