@@ -37,7 +37,7 @@ responsivity, Holm-corrected: 6 of 6 simulated responses found; 0 false positive
 Requires Python 3.10 or newer.
 
 ```bash
-git clone https://github.com/RoniGerbi/ephys-behavior-sync.git
+git clone https://github.com/Moran-Lab/ephys-behavior-sync.git
 cd ephys-behavior-sync
 python -m venv .venv
 .venv\Scripts\activate            # macOS / Linux: source .venv/bin/activate
