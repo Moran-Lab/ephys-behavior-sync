@@ -79,7 +79,7 @@ docs/figures/              figures used in this README
 tests/                     tests on simulated data with known answers
 ```
 
-## License and citation
+## Citation
 
 _To be added._
 
